@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+/* dont blame me for the color naming */
+@theme{
+    --font-inter: "Inter", "sans-serif";
+    --color-deepBlack: #141413;
+    --color-lightGray: #FAFAF8;
+    --color-lighterGray: #475467;
+    --color-llgray: #F0EFEB;
+    --color-btncolor: #D17557;
+    --color-blueish: #6B7280;
+}
+
+
