@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
-/* dont blame me for the color naming */
+/* dont blame me for the color naming :) */
 @theme{
     --font-inter: "Inter", "sans-serif";
     --color-deepBlack: #141413;
@@ -12,4 +12,9 @@
     --color-blueish: #6B7280;
 }
 
+@layer base {
+    body{
+        background-color: #FAFAF8;
+    }
+  }
 

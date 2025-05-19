@@ -1,6 +1,7 @@
-function Recipes() {
+
+function Recipes({Recipes}) {
   return (
-    <div>Recipes</div>
+    <div>{Recipes}</div>
   )
 }
 export default Recipes
