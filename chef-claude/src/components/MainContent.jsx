@@ -19,16 +19,16 @@ function MainContent() {
 
     async function getRecipes(){
         const airecipes = await getRecipeFromMistral(ingredients)
-        console.log(airecipes)
+        setRecipes(airecipes)
     }
 
 	return (
-		<div className="h-full font-inter px-12 py-18 lg:px-36">
+		<div className="h-full px-12 py-18 lg:px-36">
 			<Form handleSubmit={handleSumbit} />
 			{ingredients.length > 0 && <Ingredients ingredients={ingredients} />}
-            {ingredients.length >= 4 && <GetRecipe HandleShowRecipe={getRecipes}/>}
+            {ingredients.length >= 4 && <GetRecipe Recipe={recipes} HandleGetRecipe={getRecipes}/>}
             
-			{recipes && <Recipes Recipes={recipes}/>}
+			{recipes.length > 0 && <Recipes Recipes={recipes}/>}
 		</div>
 	);
 }

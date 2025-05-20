@@ -3,7 +3,6 @@
 
 /* dont blame me for the color naming :) */
 @theme{
-    --font-inter: "Inter", "sans-serif";
     --color-deepBlack: #141413;
     --color-lightGray: #FAFAF8;
     --color-lighterGray: #475467;
@@ -15,6 +14,7 @@
 @layer base {
     body{
         background-color: #FAFAF8;
+        font-family: 'Inter';
     }
   }
 

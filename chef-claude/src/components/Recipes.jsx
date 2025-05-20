@@ -1,7 +1,8 @@
+import Markdown from "react-markdown"
 
 function Recipes({Recipes}) {
   return (
-    <div>{Recipes}</div>
+    <Markdown>{Recipes}</Markdown>
   )
 }
 export default Recipes

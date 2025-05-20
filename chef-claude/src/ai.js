@@ -5,20 +5,22 @@ You are an assistant that receives a list of ingredients that a user has and sug
 `;
 
 const HF_ACCESS_TOKEN = import.meta.env.VITE_HF_ACCESS_TOKEN || "";
-const hf = new InferenceClient(HF_ACCESS_TOKEN);
+const client = new InferenceClient(HF_ACCESS_TOKEN);
+
 
 export async function getRecipeFromMistral(ingredientsArr) {
 	const ingredientsString = ingredientsArr.join(", ");
 	try {
-		const { generated_text } = await hf.chatCompletion({
-			model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
-			messages: [
-				{ role: "system", content: SYSTEM_PROMPT },
-				{ role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
-			],
-			parameters: { max_new_tokens: 1024 },
-		});
-		return generated_text;
+		const chatCompletion = await client.chatCompletion({
+            provider: "nebius",
+            model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+            messages: [
+                { role: "system", content: SYSTEM_PROMPT },
+                { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
+            ],
+        });
+        console.log(chatCompletion)
+		return chatCompletion.choices[0].message.content;
 	} catch (err) {
 		console.error("HF error:", err);
 		throw err;
