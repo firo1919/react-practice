@@ -1,7 +1,7 @@
 import { useState } from "react";
 import loading from "../assets/images/loading-process-svgrepo-com.svg";
 
-function GetRecipe({ HandleGetRecipe, Recipe }) {
+function GetRecipe({ HandleGetRecipe, Recipe, ref }) {
 	const [clicked, setClicked] = useState(false);
 
 	function handleClick() {
@@ -11,7 +11,7 @@ function GetRecipe({ HandleGetRecipe, Recipe }) {
 
 	return (
 		<div className="mb-14 flex flex-col md:flex-row items-center justify-between px-12 lg:px-24 py-8 gap-8 bg-llgray rounded-md">
-			<div className="">
+			<div className="" ref={ref}>
 				<p className="font-medium text-xl text-deepBlack pb-2">Ready for a recipe?</p>
 				<p className="text-lg text-blueish">Generate a recipe from your list of Ingredients</p>
 			</div>
