@@ -17,11 +17,11 @@ function Main() {
 	const gamewon = gameWon();
 	const gameover = gameOver();
 
-    useEffect(() => {
-        document.title = "Assembly: Endgame"
+	useEffect(() => {
+		document.title = "Assembly: Endgame";
 		getNewRandomWord();
 		resetLetters();
-        resetLanguages()
+		resetLanguages();
 	}, []);
 
 	function gameWon() {
@@ -40,8 +40,8 @@ function Main() {
 
 	function resetGame() {
 		getNewRandomWord();
-        resetLetters();
-        resetLanguages()
+		resetLetters();
+		resetLanguages();
 	}
 
 	function resetLetters() {
@@ -99,7 +99,7 @@ function Main() {
 
 			return true;
 		}
-        return false
+		return false;
 	}
 
 	function getNewRandomWord() {
@@ -190,7 +190,7 @@ function Main() {
 						<Letter gameOver={gameover} PickLetter={pickLetter} key={nanoid()} letter={l} />
 					))}
 				</div>
-				{(gameover | gamewon) ? <NewGame resetGame={resetGame} /> : ""}
+				{gameover | gamewon ? <NewGame resetGame={resetGame} /> : ""}
 			</div>
 		</div>
 	);
