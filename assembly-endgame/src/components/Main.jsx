@@ -17,6 +17,13 @@ function Main() {
 	const gamewon = gameWon();
 	const gameover = gameOver();
 
+    useEffect(() => {
+        document.title = "Assembly: Endgame"
+		getNewRandomWord();
+		resetLetters();
+        resetLanguages()
+	}, []);
+
 	function gameWon() {
 		if (randomLetter.length !== 0) {
 			for (let elem of randomLetter) {
@@ -102,12 +109,6 @@ function Main() {
 				setRandomLetter(data[0].split("").map((a) => ({ letter: a.toUpperCase(), guessed: false })));
 			});
 	}
-
-	useEffect(() => {
-		getNewRandomWord();
-		resetLetters();
-        resetLanguages()
-	}, []);
 
 	function checkLetter(letter) {
 		setRandomLetter((prev) => {
