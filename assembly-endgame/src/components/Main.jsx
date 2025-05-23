@@ -99,7 +99,7 @@ function Main() {
 		fetch("https://random-word-api.vercel.app/api?words=1")
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data), setRandomLetter(data[0].split("").map((a) => ({ letter: a.toUpperCase(), guessed: false })));
+				setRandomLetter(data[0].split("").map((a) => ({ letter: a.toUpperCase(), guessed: false })));
 			});
 	}
 
@@ -110,7 +110,6 @@ function Main() {
 	}, []);
 
 	function checkLetter(letter) {
-		console.log("checking letter", letter);
 		setRandomLetter((prev) => {
 			return prev.map((a) => {
 				if (a.letter === letter) {
