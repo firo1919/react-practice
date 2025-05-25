@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
 import Letter from "./Letter";
 import Language from "./Language";
 import Guess from "./Guess";
@@ -11,7 +10,7 @@ import Confetti from "react-confetti";
 
 function Main() {
 	const [languages, setLanguages] = useState([]);
-	const [randomLetter, setRandomLetter] = useState([]);
+	const [randomWord, setRandomWord] = useState([]);
 	const [letters, setLetters] = useState([]);
 
 	const gamewon = gameWon();
@@ -25,8 +24,8 @@ function Main() {
 	}, []);
 
 	function gameWon() {
-		if (randomLetter.length !== 0) {
-			for (let elem of randomLetter) {
+		if (randomWord.length !== 0) {
+			for (let elem of randomWord) {
 				if (!elem.guessed) {
 					return false;
 				}
@@ -106,12 +105,12 @@ function Main() {
 		fetch("https://random-word-api.vercel.app/api?words=1")
 			.then((response) => response.json())
 			.then((data) => {
-				setRandomLetter(data[0].split("").map((a) => ({ letter: a.toUpperCase(), guessed: false })));
+				setRandomWord(data[0].split("").map((a) => ({ letter: a.toUpperCase(), guessed: false })));
 			});
 	}
 
 	function checkLetter(letter) {
-		setRandomLetter((prev) => {
+		setRandomWord((prev) => {
 			return prev.map((a) => {
 				if (a.letter === letter) {
 					return {
@@ -124,7 +123,7 @@ function Main() {
 			});
 		});
 
-		for (let elem of randomLetter) {
+		for (let elem of randomWord) {
 			if (elem.letter === letter) {
 				return true;
 			}
@@ -174,23 +173,23 @@ function Main() {
 			<div className="w-2xl px-14 py-4">
 				<p className="text-center text-white font-medium text-xl">Assembly: Endgame</p>
 				<p className="text-center text-white font-medium text-sm px-25">Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
-				{gamewon ? <GameWon /> : gameover ? <GameOver /> : <FareWell Languages={languages} />}
+				{gamewon ? <GameWon /> : gameover ? <GameOver RandomWord={randomWord}/> : <FareWell Languages={languages} />}
 				<div className="flex justify-center gap-2 flex-wrap pt-9 px-20">
 					{languages.map((l) => (
-						<Language key={nanoid()} language={l} />
+						<Language key={l.name} language={l} />
 					))}
 				</div>
 				<div className="flex justify-center gap-1 px-10 pt-9">
-					{randomLetter.map((l) => (
-						<Guess key={nanoid()} letter={l} />
+					{randomWord.map((l, i) => (
+						<Guess key={i} letter={l} />
 					))}
 				</div>
 				<div className="flex justify-center gap-2 flex-wrap pt-18">
 					{letters.map((l) => (
-						<Letter gameOver={gameover} PickLetter={pickLetter} key={nanoid()} letter={l} />
+						<Letter gameOver={gameover} PickLetter={pickLetter} key={l.letter} letter={l} />
 					))}
 				</div>
-				{gameover | gamewon ? <NewGame resetGame={resetGame} /> : ""}
+				{gameover || gamewon ? <NewGame resetGame={resetGame} /> : ""}
 			</div>
 		</div>
 	);
