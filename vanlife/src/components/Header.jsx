@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import logo from "../assets/images/logo.png"
 
 function Header() {
+ 
 	return(
         <div className="h-28 px-6 flex items-center justify-between">
             <Link to="/">
@@ -9,8 +10,9 @@ function Header() {
             </Link>
 
             <nav className="flex gap-4 ">
-                <Link className="text-dark-gray font-semibold" to="/about">About</Link>
-                <Link className="text-dark-gray font-semibold" to="/vans">Vans</Link>
+                <NavLink className={({isActive}) => (isActive ? "font-bold underline text-charcoal-black" : "text-dark-gray font-semibold")} to="/host">Host</NavLink>
+                <NavLink className={({isActive}) => (isActive ? "font-bold underline text-charcoal-black" : "text-dark-gray font-semibold")} to="/about">About</NavLink>
+                <NavLink className={({isActive}) => (isActive ? "font-bold underline text-charcoal-black" : "text-dark-gray font-semibold")} to="/vans">Vans</NavLink>
             </nav>
 
         </div>

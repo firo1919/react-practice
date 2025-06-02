@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Badge from "../components/Badge";
-import Button from "../components/Button";
+import Badge from "../../components/Badge";
+import Button from "../../components/Button";
 
 function VanDetail() {
 	const params = useParams();
