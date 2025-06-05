@@ -132,13 +132,14 @@ function Main() {
 	}
 
 	function removeLang(Languages) {
-		for (let i = 0; i < Languages.length; i++) {
-			if (!Languages[i].removed) {
-				Languages[i].removed = true;
-				break;
-			}
-		}
-		return Languages;
+        let removed = false
+		return Languages.map(lang => {
+            if(!lang.removed && !removed){
+                removed = true
+                return {...lang, removed:true}
+            }
+            return lang
+        });
 	}
 
 	function pickLetter(letter) {
